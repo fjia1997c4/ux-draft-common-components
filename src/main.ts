@@ -145,7 +145,7 @@ import { ChipOption } from './app/components/chips/chip.types';
               />
               <div class="selection-info">
                 <p>Selected skills: {{ selectedSkills.length }}/3</p>
-                <p>Skills: {{ selectedSkills.map(s => s.label).join(', ') || 'None' }}</p>
+                <p>Skills: {{ getSelectedSkillsText() }}</p>
               </div>
             </div>
 
@@ -1345,6 +1345,12 @@ export class App {
       }
     });
     return errors;
+  }
+
+  getSelectedSkillsText(): string {
+    return this.selectedSkills.length > 0 
+      ? this.selectedSkills.map(s => s.label).join(', ')
+      : 'None';
   }
 }
 
