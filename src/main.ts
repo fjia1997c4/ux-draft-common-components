@@ -7,6 +7,8 @@ import { CheckboxGroupComponent, CheckboxOption } from './app/components/checkbo
 import { RadioComponent } from './app/components/radio/radio.component';
 import { RadioGroupComponent, RadioOption } from './app/components/radio/radio-group.component';
 import { TextFieldComponent } from './app/components/text-field/text-field.component';
+import { ChipComponent } from './app/components/chips/chip.component';
+import { ChipGroupComponent, ChipOption } from './app/components/chips/chip-group.component';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +20,181 @@ import { TextFieldComponent } from './app/components/text-field/text-field.compo
     CheckboxGroupComponent,
     RadioComponent,
     RadioGroupComponent,
-    TextFieldComponent
+    TextFieldComponent,
+    ChipComponent,
+    ChipGroupComponent
   ],
   template: `
     <div class="app-container">
       <header class="app-header">
-        <h1>C4 Text Fields, Checkbox, Radio Button Components (DSD-23,34,33)</h1>
-        <p>C4 Text Fields, Checkbox, Radio Button Components (DSD-23,34,33) based on Figma design specification files</p>
+        <h1>C4 Form Components Library (DSD-23,34,33)</h1>
+        <p>Complete form components including Text Fields, Checkboxes, Radio Buttons, and Chips based on Figma design specifications</p>
       </header>
 
       <main class="app-main">
+        <!-- Chips Component Examples -->
+        <section class="demo-section">
+          <h2>Chips Component</h2>
+          <p class="section-description">
+            Chips are compact elements that represent an input, attribute, or action. They can be used for filtering, tagging, or displaying selected options.
+          </p>
+          
+          <div class="chips-examples">
+            <div class="example-group">
+              <h3>Basic Chip Sizes</h3>
+              <div class="chip-size-demo">
+                <app-chip label="Small" size="small" />
+                <app-chip label="Medium" size="medium" />
+                <app-chip label="Large" size="large" />
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Chip Colors</h3>
+              <div class="chip-color-demo">
+                <app-chip label="Default" color="default" />
+                <app-chip label="Blue" color="blue" />
+                <app-chip label="Green" color="green" />
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Chip Variants</h3>
+              <div class="chip-variant-demo">
+                <app-chip label="Filled" variant="filled" color="blue" />
+                <app-chip label="Outlined" variant="outlined" color="blue" />
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Chips with Icons</h3>
+              <div class="chip-icon-demo">
+                <app-chip label="Star" size="medium" [hasIcon]="true" icon="star" color="blue" />
+                <app-chip label="User" size="large" [hasIcon]="true" icon="user" color="green" />
+                <app-chip label="Tag" size="medium" [hasIcon]="true" icon="tag" color="default" />
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Dismissible Chips</h3>
+              <div class="chip-dismissible-demo">
+                <app-chip 
+                  label="Removable Medium" 
+                  size="medium" 
+                  [dismissible]="true" 
+                  color="blue"
+                  (dismiss)="onChipDismiss($event)"
+                />
+                <app-chip 
+                  label="Removable Large" 
+                  size="large" 
+                  [dismissible]="true" 
+                  color="green"
+                  (dismiss)="onChipDismiss($event)"
+                />
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Chip States</h3>
+              <div class="chip-states-demo">
+                <app-chip label="Normal" color="blue" />
+                <app-chip label="Selected" color="blue" [selected]="true" />
+                <app-chip label="Disabled" color="blue" [disabled]="true" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chip Group Examples -->
+        <section class="demo-section">
+          <h2>Chip Group Component</h2>
+          <p class="section-description">
+            Chip groups allow you to manage collections of chips with selection, filtering, and dismissal functionality.
+          </p>
+          
+          <div class="chip-group-examples">
+            <div class="example-group">
+              <h3>Single Selection Chip Group</h3>
+              <app-chip-group
+                label="Choose your preferred framework:"
+                [chips]="frameworkChips"
+                [multiSelect]="false"
+                size="medium"
+                color="blue"
+                (selectionChange)="onFrameworkSelection($event)"
+              />
+              <div class="selection-info">
+                <p>Selected: {{ selectedFramework || 'None' }}</p>
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Multi-Selection Chip Group</h3>
+              <app-chip-group
+                label="Select your skills:"
+                [chips]="skillChips"
+                [multiSelect]="true"
+                [maxSelection]="3"
+                size="medium"
+                color="green"
+                [dismissible]="true"
+                (selectionChange)="onSkillsSelection($event)"
+                (chipDismiss)="onSkillDismiss($event)"
+              />
+              <div class="selection-info">
+                <p>Selected skills: {{ selectedSkills.length }}/3</p>
+                <p>Skills: {{ selectedSkills.map(s => s.label).join(', ') || 'None' }}</p>
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Small Chips Group</h3>
+              <app-chip-group
+                label="Tags:"
+                [chips]="tagChips"
+                [multiSelect]="true"
+                size="small"
+                color="default"
+                [wrap]="true"
+                (selectionChange)="onTagsSelection($event)"
+              />
+              <div class="selection-info">
+                <p>Selected tags: {{ selectedTags.length }}</p>
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Large Chips with Icons</h3>
+              <app-chip-group
+                label="Categories:"
+                [chips]="categoryChips"
+                [multiSelect]="false"
+                size="large"
+                color="blue"
+                variant="outlined"
+                (selectionChange)="onCategorySelection($event)"
+              />
+              <div class="selection-info">
+                <p>Selected category: {{ selectedCategory || 'None' }}</p>
+              </div>
+            </div>
+
+            <div class="example-group">
+              <h3>Vertical Chip Group</h3>
+              <app-chip-group
+                label="Priority levels:"
+                [chips]="priorityChips"
+                [multiSelect]="false"
+                size="medium"
+                direction="vertical"
+                [wrap]="false"
+                (selectionChange)="onPrioritySelection($event)"
+              />
+            </div>
+          </div>
+        </section>
+
         <!-- Basic Checkbox Examples -->
         <section class="demo-section">
           <h2>Basic Checkbox States</h2>
@@ -807,6 +974,30 @@ import { TextFieldComponent } from './app/components/text-field/text-field.compo
       gap: 24px;
     }
 
+    .chips-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .chip-group-examples {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .chip-size-demo,
+    .chip-color-demo,
+    .chip-variant-demo,
+    .chip-icon-demo,
+    .chip-dismissible-demo,
+    .chip-states-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -836,6 +1027,20 @@ import { TextFieldComponent } from './app/components/text-field/text-field.compo
       
       .form-row {
         grid-template-columns: 1fr;
+      }
+      
+      .chips-examples {
+        grid-template-columns: 1fr;
+      }
+      
+      .chip-size-demo,
+      .chip-color-demo,
+      .chip-variant-demo,
+      .chip-icon-demo,
+      .chip-dismissible-demo,
+      .chip-states-demo {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   `]
@@ -886,6 +1091,51 @@ export class App {
     { id: 'tab2', label: 'Tab Option 2', value: 'tab2' },
     { id: 'tab3', label: 'Tab Option 3', value: 'tab3' }
   ];
+
+  // Chip options
+  frameworkChips: ChipOption[] = [
+    { id: 'angular', label: 'Angular', value: 'angular' },
+    { id: 'react', label: 'React', value: 'react' },
+    { id: 'vue', label: 'Vue.js', value: 'vue' },
+    { id: 'svelte', label: 'Svelte', value: 'svelte' }
+  ];
+
+  skillChips: ChipOption[] = [
+    { id: 'js', label: 'JavaScript', value: 'javascript', icon: 'star' },
+    { id: 'ts', label: 'TypeScript', value: 'typescript', icon: 'star' },
+    { id: 'css', label: 'CSS', value: 'css', icon: 'star' },
+    { id: 'html', label: 'HTML', value: 'html', icon: 'star' },
+    { id: 'node', label: 'Node.js', value: 'nodejs', icon: 'star' },
+    { id: 'python', label: 'Python', value: 'python', icon: 'star' }
+  ];
+
+  tagChips: ChipOption[] = [
+    { id: 'frontend', label: 'Frontend', value: 'frontend' },
+    { id: 'backend', label: 'Backend', value: 'backend' },
+    { id: 'fullstack', label: 'Full Stack', value: 'fullstack' },
+    { id: 'mobile', label: 'Mobile', value: 'mobile' },
+    { id: 'web', label: 'Web', value: 'web' },
+    { id: 'api', label: 'API', value: 'api' }
+  ];
+
+  categoryChips: ChipOption[] = [
+    { id: 'work', label: 'Work', value: 'work', icon: 'user' },
+    { id: 'personal', label: 'Personal', value: 'personal', icon: 'heart' },
+    { id: 'project', label: 'Project', value: 'project', icon: 'tag' }
+  ];
+
+  priorityChips: ChipOption[] = [
+    { id: 'low', label: 'Low Priority', value: 'low' },
+    { id: 'medium', label: 'Medium Priority', value: 'medium' },
+    { id: 'high', label: 'High Priority', value: 'high' },
+    { id: 'urgent', label: 'Urgent', value: 'urgent' }
+  ];
+
+  // Chip selection state
+  selectedFramework: string = '';
+  selectedSkills: ChipOption[] = [];
+  selectedTags: ChipOption[] = [];
+  selectedCategory: string = '';
 
   selectedExperience: any = null;
   isExperienceValid: boolean = false;
@@ -1040,6 +1290,41 @@ export class App {
 
   onTabDemoChange(selectedValue: any): void {
     console.log('Tab demo selection:', selectedValue);
+  }
+
+  // Chip event handlers
+  onChipDismiss(chipValue: any): void {
+    console.log('Chip dismissed:', chipValue);
+  }
+
+  onFrameworkSelection(selectedChips: ChipOption[]): void {
+    this.selectedFramework = selectedChips.length > 0 ? selectedChips[0].label : '';
+    console.log('Framework selected:', selectedChips);
+  }
+
+  onSkillsSelection(selectedChips: ChipOption[]): void {
+    this.selectedSkills = selectedChips;
+    console.log('Skills selected:', selectedChips);
+  }
+
+  onSkillDismiss(chip: ChipOption): void {
+    console.log('Skill dismissed:', chip);
+    // Remove from skills array
+    this.skillChips = this.skillChips.filter(c => c.id !== chip.id);
+  }
+
+  onTagsSelection(selectedChips: ChipOption[]): void {
+    this.selectedTags = selectedChips;
+    console.log('Tags selected:', selectedChips);
+  }
+
+  onCategorySelection(selectedChips: ChipOption[]): void {
+    this.selectedCategory = selectedChips.length > 0 ? selectedChips[0].label : '';
+    console.log('Category selected:', selectedChips);
+  }
+
+  onPrioritySelection(selectedChips: ChipOption[]): void {
+    console.log('Priority selected:', selectedChips);
   }
 
   onSearchChange(searchValue: string): void {
