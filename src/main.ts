@@ -695,7 +695,7 @@ import { ChipOption } from './app/components/chips/chip.types';
           />
           
           <div class="selection-info">
-            <p>Selected skills: {{ selectedSkills.length }}</p>
+            <p>Selected skills: {{ selectedCheckboxSkills.length }}</p>
             <p>Valid selection: {{ isSkillsValid ? 'Yes' : 'No' }}</p>
           </div>
         </section>
@@ -1059,7 +1059,7 @@ export class App {
     { id: 'vue', label: 'Vue.js', value: 'vue' }
   ];
 
-  selectedSkills: CheckboxOption[] = [];
+  selectedCheckboxSkills: CheckboxOption[] = [];
   isSkillsValid: boolean = false;
 
   contactMethodOptions: RadioOption[] = [
@@ -1266,7 +1266,7 @@ export class App {
   }
 
   onSkillsChange(selectedOptions: CheckboxOption[]): void {
-    this.selectedSkills = selectedOptions;
+    this.selectedCheckboxSkills = selectedOptions;
     console.log('Selected skills:', selectedOptions);
   }
 
