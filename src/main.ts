@@ -144,7 +144,7 @@ import { ChipOption } from './app/components/chips/chip.types';
                 (chipDismiss)="onSkillDismiss($event)"
               />
               <div class="selection-info">
-                <p>Selected skills: {{ selectedSkills.length }}/3</p>
+                <p>Selected skills: {{ selectedChipSkills.length }}/3</p>
                 <p>Skills: {{ getSelectedSkillsText() }}</p>
               </div>
             </div>
