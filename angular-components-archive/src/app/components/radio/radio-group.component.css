@@ -1,0 +1,49 @@
+/* Radio Group Component Styles */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.radio-group-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0A0A0A;
+  margin-bottom: 8px;
+}
+
+.radio-group-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radio-group-error {
+  color: #960000;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Horizontal layout option */
+.radio-group.horizontal .radio-group-options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .radio-group {
+    gap: 8px;
+  }
+  
+  .radio-group-options {
+    gap: 6px;
+  }
+  
+  .radio-group.horizontal .radio-group-options {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

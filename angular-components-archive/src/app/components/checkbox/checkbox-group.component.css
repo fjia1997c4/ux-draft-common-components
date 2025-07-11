@@ -1,0 +1,43 @@
+/* Checkbox Group Component Styles */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.checkbox-group-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0A0A0A;
+  margin-bottom: 8px;
+}
+
+.checkbox-group-select-all {
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.checkbox-group-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-group-error {
+  color: #960000;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .checkbox-group {
+    gap: 8px;
+  }
+  
+  .checkbox-group-options {
+    gap: 6px;
+  }
+}

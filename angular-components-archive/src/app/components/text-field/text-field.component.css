@@ -1,0 +1,378 @@
+/* Text Field Component Styles - Based on Figma Design System */
+.text-field-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--text-field-font-family, 'PT Sans', sans-serif);
+}
+
+.text-field-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--text-field-label-margin-bottom, 4px);
+  font-size: var(--text-field-label-font-size, 16px);
+  font-weight: var(--text-field-label-font-weight, 400);
+  line-height: var(--text-field-label-line-height, 150%);
+  color: var(--text-field-label-color, #0A0A0A);
+  user-select: none;
+}
+
+.text-field-label.required::after {
+  content: '*';
+  color: var(--text-field-required-color, #960000);
+  margin-left: 2px;
+}
+
+.text-field-label.optional::after {
+  content: '(optional)';
+  color: var(--text-field-optional-color, #6C6C6C);
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.text-field-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.text-field-prefix-icon,
+.text-field-suffix-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: var(--text-field-icon-color, #6C6C6C);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.text-field-prefix-icon {
+  left: 12px;
+}
+
+.text-field-suffix-icon {
+  right: 12px;
+}
+
+.text-field-clear-button {
+  position: absolute;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  color: var(--text-field-icon-color, #6C6C6C);
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.text-field-clear-button:hover {
+  background-color: var(--text-field-clear-hover-bg, #f0f0f0);
+  color: var(--text-field-clear-hover-color, #0A0A0A);
+}
+
+.text-field-prefix-icon:hover,
+.text-field-suffix-icon:hover {
+  color: var(--text-field-icon-hover-color, #0A0A0A);
+}
+
+.text-field-input {
+  width: 100%;
+  min-height: var(--text-field-min-height, 44px);
+  padding: var(--text-field-input-padding, 12px 16px);
+  border: var(--text-field-border-width, 2px) solid var(--text-field-border-color, #3A3A3A);
+  border-radius: var(--text-field-border-radius, 4px);
+  background-color: var(--text-field-background-color, #FFFFFF);
+  color: var(--text-field-text-color, #3A3A3A);
+  font-family: inherit;
+  font-size: var(--text-field-input-font-size, 16px);
+  font-weight: var(--text-field-input-font-weight, 400);
+  line-height: var(--text-field-input-line-height, 150%);
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+/* Input padding adjustments for icons */
+.text-field-input.has-prefix-icon {
+  padding-left: 40px;
+}
+
+.text-field-input.has-suffix-icon {
+  padding-right: 40px;
+}
+
+.text-field-input.has-clear-button {
+  padding-right: 40px;
+}
+
+.text-field-input::placeholder {
+  color: var(--text-field-placeholder-color, #6C6C6C);
+  opacity: 1;
+}
+
+/* Focus state */
+.text-field-input:focus {
+  border-color: var(--text-field-focus-outline, #0A0A0A);
+  box-shadow: 0 0 0 1px var(--text-field-focus-outline, #0A0A0A);
+}
+
+/* Hover state */
+.text-field-container:not(.disabled) .text-field-input:hover:not(:focus) {
+  border-color: var(--text-field-hover-border, #0A0A0A);
+}
+
+/* Disabled state */
+.text-field-container.disabled .text-field-input {
+  cursor: not-allowed;
+  user-select: none;
+}
+
+/* Error state */
+.text-field-container.error .text-field-input {
+  border-color: var(--text-field-error-border, #960000);
+}
+
+.text-field-container.error .text-field-input:focus {
+  border-color: var(--text-field-error-border, #960000);
+  box-shadow: 0 0 0 1px var(--text-field-error-border, #960000);
+}
+
+/* Helper text and error message */
+.text-field-helper {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: var(--text-field-helper-margin-top, 4px);
+  font-size: var(--text-field-helper-font-size, 14px);
+  font-weight: var(--text-field-helper-font-weight, 400);
+  line-height: var(--text-field-helper-line-height, 150%);
+  color: var(--text-field-helper-color, #3A3A3A);
+}
+
+.text-field-helper.error {
+  color: var(--text-field-error-color, #960000);
+}
+
+.text-field-helper-icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.text-field-helper-icon.error {
+  color: var(--text-field-error-color, #960000);
+}
+
+.text-field-helper-icon.info {
+  color: var(--text-field-info-color, #1A70B3);
+}
+
+/* Character counter */
+.text-field-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--text-field-helper-margin-top, 4px);
+}
+
+.text-field-counter-text {
+  font-size: var(--text-field-helper-font-size, 14px);
+  color: var(--text-field-helper-color, #3A3A3A);
+}
+
+.text-field-counter-text.error {
+  color: var(--text-field-error-color, #960000);
+}
+
+/* Enhanced accessibility styles */
+.text-field-input:focus {
+  border-color: var(--text-field-focus-outline, #0A0A0A);
+  box-shadow: 0 0 0 1px var(--text-field-focus-outline, #0A0A0A);
+  /* Enhanced focus ring for better visibility */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* High contrast mode enhancements */
+@media (prefers-contrast: high) {
+  .text-field-input {
+    border-width: 3px;
+  }
+  
+  .text-field-input:focus {
+    outline: 3px solid;
+    outline-offset: 2px;
+  }
+  
+  .text-field-helper.error {
+    font-weight: bold;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Enhanced error state for accessibility */
+.text-field-container.error .text-field-input {
+  border-color: var(--text-field-error-border, #960000);
+  /* Add subtle background tint for better error visibility */
+  background-color: rgba(150, 0, 0, 0.02);
+}
+
+.text-field-container.error .text-field-input:focus {
+  border-color: var(--text-field-error-border, #960000);
+  box-shadow: 0 0 0 1px var(--text-field-error-border, #960000);
+  background-color: var(--text-field-background-color, #FFFFFF);
+}
+
+/* Enhanced disabled state for accessibility */
+.text-field-container.disabled .text-field-input {
+  cursor: not-allowed;
+  user-select: none;
+  /* Ensure disabled state is clearly visible */
+  opacity: 0.6;
+}
+
+.text-field-container.disabled .text-field-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Focus management for icons */
+.text-field-prefix-icon:focus,
+.text-field-suffix-icon:focus,
+.text-field-clear-button:focus,
+.text-field-password-toggle:focus,
+.text-field-help-icon:focus {
+  outline: 2px solid var(--text-field-focus-outline, #0A0A0A);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Keyboard navigation indicators */
+.text-field-input[data-keyboard-navigation="true"]:focus {
+  /* Enhanced focus ring for keyboard users */
+  box-shadow: 0 0 0 2px var(--text-field-focus-outline, #0A0A0A),
+              0 0 0 4px rgba(26, 112, 179, 0.2);
+}
+
+/* Help icon */
+.text-field-help-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-field-info-color, #1A70B3);
+  cursor: help;
+  transition: color 0.2s ease-in-out;
+}
+
+.text-field-help-icon:hover {
+  color: var(--text-field-info-hover-color, #0f5a94);
+}
+
+/* Input type specific styles */
+.text-field-input[type="password"] {
+  font-family: monospace;
+}
+
+.text-field-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.text-field-input[type="number"]::-webkit-outer-spin-button,
+.text-field-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Search input specific styles */
+.text-field-input[type="search"] {
+  -webkit-appearance: none;
+}
+
+.text-field-input[type="search"]::-webkit-search-decoration,
+.text-field-input[type="search"]::-webkit-search-cancel-button,
+.text-field-input[type="search"]::-webkit-search-results-button,
+.text-field-input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+/* Password visibility toggle */
+.text-field-password-toggle {
+  position: absolute;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  color: var(--text-field-icon-color, #6C6C6C);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.text-field-password-toggle:hover {
+  color: var(--text-field-icon-hover-color, #0A0A0A);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .text-field-input {
+    min-height: 40px;
+    padding: 10px 12px;
+  }
+  
+  .text-field-label {
+    font-size: 14px;
+  }
+  
+  .text-field-input {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-field-input {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .text-field-input,
+  .text-field-help-icon {
+    transition: none;
+  }
+}
+
+/* CSS Custom Properties for dynamic styling */
+:root {
+  --text-field-label-margin-bottom: 4px;
+  --text-field-helper-margin-top: 4px;
+  --text-field-input-padding: 12px 16px;
+  --text-field-border-radius: 4px;
+  --text-field-border-width: 2px;
+  --text-field-min-height: 44px;
+ --text-field-icon-color: #6C6C6C;
+ --text-field-icon-hover-color: #0A0A0A;
+ --text-field-clear-hover-bg: #f0f0f0;
+ --text-field-clear-hover-color: #0A0A0A;
+}

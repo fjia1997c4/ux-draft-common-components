@@ -1,0 +1,154 @@
+/* Checkbox Component Styles - Updated with Figma Design System */
+.checkbox-container {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--checkbox-space-between, 16px);
+  cursor: pointer;
+  font-family: var(--checkbox-font-family, 'PT Sans', sans-serif);
+  font-size: var(--checkbox-font-size, 16px);
+  font-weight: var(--checkbox-font-weight, 400);
+  line-height: var(--checkbox-line-height, 150%);
+  color: var(--checkbox-text-color, #0A0A0A);
+  padding: var(--checkbox-vertical-padding, 4px) var(--checkbox-horizontal-padding, 4px);
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.checkbox-container.disabled {
+  cursor: not-allowed;
+  opacity: 1; /* Remove opacity as colors are handled by design system */
+}
+
+.checkbox-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--checkbox-size, 20px);
+  height: var(--checkbox-size, 20px);
+  border: var(--checkbox-border-width, 2px) solid var(--checkbox-border-color, #0A0A0A);
+  border-radius: var(--checkbox-border-radius, 4px);
+  background-color: var(--checkbox-background-color, transparent);
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Remove default hover effects - handled by component logic */
+.checkbox-wrapper:hover {
+  /* Styles applied dynamically via component */
+}
+
+/* Focus state - 3-line border system from Figma */
+.checkbox-wrapper.focused {
+  /* Styles applied dynamically via component */
+}
+
+/* Pressed state */
+.checkbox-wrapper.pressed {
+  transform: scale(0.95);
+}
+
+/* Hidden native checkbox */
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Checkmark styling */
+.checkbox-checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.checkmark-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox-wrapper.checked .checkmark-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Indeterminate state */
+.indeterminate-icon {
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.checkbox-wrapper.indeterminate .indeterminate-icon {
+  opacity: 1;
+}
+
+.checkbox-wrapper.indeterminate {
+  background-color: var(--checkbox-background-color, #1A70B3);
+  border-color: var(--checkbox-border-color, #1A70B3);
+}
+
+/* Label styling */
+.checkbox-label {
+  user-select: none;
+  transition: color 0.2s ease-in-out;
+  color: var(--checkbox-text-color, #0A0A0A);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .checkbox-container {
+    gap: 12px;
+  }
+  
+  .checkbox-wrapper {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .checkmark-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .checkbox-wrapper {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .checkbox-wrapper,
+  .checkmark-icon,
+  .indeterminate-icon,
+  .checkbox-label,
+  .checkbox-container {
+    transition: none;
+  }
+}
+
+/* CSS Custom Properties for dynamic styling */
+:root {
+  --checkbox-space-between: 16px;
+  --checkbox-vertical-padding: 4px;
+  --checkbox-horizontal-padding: 4px;
+  --checkbox-size: 20px;
+  --checkbox-border-radius: 4px;
+  --checkbox-border-width: 2px;
+  --checkbox-focus-border-width: 3px;
+}

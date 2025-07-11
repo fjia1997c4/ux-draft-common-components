@@ -1,0 +1,152 @@
+/* Radio Component Styles - Based on Figma Design System */
+.radio-container {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--radio-space-between, 16px);
+  cursor: pointer;
+  font-family: var(--radio-font-family, 'PT Sans', sans-serif);
+  font-size: var(--radio-font-size, 16px);
+  font-weight: var(--radio-font-weight, 400);
+  line-height: var(--radio-line-height, 150%);
+  color: var(--radio-text-color, #0A0A0A);
+  padding: var(--radio-vertical-padding, 4px) var(--radio-horizontal-padding, 4px);
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.radio-container.disabled {
+  cursor: not-allowed;
+}
+
+/* Hover state styling for selected radios */
+.radio-container.hovered.selected:not(.disabled) {
+  /* Hover outline applied via dynamic styles */
+}
+
+/* Focus state styling - 3-line border system */
+.radio-container.focused .radio-wrapper {
+  /* Focus styles applied via dynamic styles in component */
+}
+
+/* Pressed state styling */
+.radio-container.pressed:not(.disabled) {
+  /* Pressed outline applied via dynamic styles */
+}
+
+.radio-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--radio-size, 20px);
+  height: var(--radio-size, 20px);
+  border: var(--radio-border-width, 2px) solid var(--radio-border-color, #0A0A0A);
+  border-radius: var(--radio-border-radius, 50%);
+  background-color: var(--radio-background-color, transparent);
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Selected state specific styling */
+.radio-wrapper.selected {
+  border-color: var(--radio-border-color, #1A70B3);
+}
+
+/* Disabled selected state */
+.radio-wrapper.selected.disabled {
+  border-color: var(--radio-border-color, #918F8F);
+}
+
+/* Pressed state */
+.radio-wrapper.pressed {
+  transform: scale(0.95);
+}
+
+/* Hidden native radio */
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Radio dot styling */
+.radio-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dot-inner {
+  width: var(--radio-dot-size, 8px);
+  height: var(--radio-dot-size, 8px);
+  border-radius: 50%;
+  background-color: var(--radio-dot-color, #1A70B3);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s ease-in-out;
+}
+
+.radio-wrapper.selected .dot-inner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Label styling */
+.radio-label {
+  user-select: none;
+  transition: color 0.2s ease-in-out;
+  color: var(--radio-text-color, #0A0A0A);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .radio-container {
+    gap: 12px;
+  }
+  
+  .radio-wrapper {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .dot-inner {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .radio-wrapper {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .radio-wrapper,
+  .dot-inner,
+  .radio-label,
+  .radio-container {
+    transition: none;
+  }
+}
+
+/* CSS Custom Properties for dynamic styling */
+:root {
+  --radio-space-between: 16px;
+  --radio-vertical-padding: 4px;
+  --radio-horizontal-padding: 4px;
+  --radio-size: 20px;
+  --radio-border-radius: 50%;
+  --radio-border-width: 2px;
+  --radio-focus-border-width: 3px;
+  --radio-dot-size: 8px;
+}
