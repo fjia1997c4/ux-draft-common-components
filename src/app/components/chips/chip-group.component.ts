@@ -33,6 +33,7 @@ import { AccessibilityService } from '../../services/accessibility.service';
           [dismissible]="chip.dismissible ?? dismissible"
           [hasIcon]="!!chip.icon"
           [icon]="chip.icon"
+          [icon]="chip.icon || ''"
           [disabled]="chip.disabled ?? false"
           [selected]="isSelected(chip)"
           (click)="onChipClick(chip, $event)"

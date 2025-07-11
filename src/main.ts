@@ -8,7 +8,8 @@ import { RadioComponent } from './app/components/radio/radio.component';
 import { RadioGroupComponent, RadioOption } from './app/components/radio/radio-group.component';
 import { TextFieldComponent } from './app/components/text-field/text-field.component';
 import { ChipComponent } from './app/components/chips/chip.component';
-import { ChipGroupComponent, ChipOption } from './app/components/chips/chip-group.component';
+import { ChipGroupComponent } from './app/components/chips/chip-group.component';
+import { ChipOption } from './app/components/chips/chip.types';
 
 @Component({
   selector: 'app-root',
