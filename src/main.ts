@@ -1134,7 +1134,7 @@ export class App {
 
   // Chip selection state
   selectedFramework: string = '';
-  selectedSkills: ChipOption[] = [];
+  selectedChipSkills: ChipOption[] = [];
   selectedTags: ChipOption[] = [];
   selectedCategory: string = '';
 
@@ -1304,7 +1304,7 @@ export class App {
   }
 
   onSkillsSelection(selectedChips: ChipOption[]): void {
-    this.selectedSkills = selectedChips;
+    this.selectedChipSkills = selectedChips;
     console.log('Skills selected:', selectedChips);
   }
 
@@ -1348,8 +1348,8 @@ export class App {
   }
 
   getSelectedSkillsText(): string {
-    return this.selectedSkills.length > 0 
-      ? this.selectedSkills.map(s => s.label).join(', ')
+    return this.selectedChipSkills.length > 0 
+      ? this.selectedChipSkills.map(s => s.label).join(', ')
       : 'None';
   }
 }
