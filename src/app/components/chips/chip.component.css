@@ -1,0 +1,225 @@
+/* Chip Component Styles - Based on Figma Design System */
+.chip-container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-icon-text-spacing, 4px);
+  max-width: var(--chip-max-width, 300px);
+  padding: var(--chip-vertical-padding, 4px) var(--chip-horizontal-padding, 12px);
+  background-color: var(--chip-background-color, #FCFCFC);
+  border: var(--chip-border-width, 1px) solid var(--chip-border-color, #D3D3D3);
+  border-radius: var(--chip-border-radius, 16px);
+  font-family: var(--chip-font-family, 'PT Sans', sans-serif);
+  font-size: var(--chip-font-size, 14px);
+  font-weight: var(--chip-font-weight, 400);
+  line-height: var(--chip-line-height, 150%);
+  color: var(--chip-text-color, #0A0A0A);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+/* Size variants */
+.chip-container.small {
+  padding: 0px 4px;
+  font-size: 14px;
+}
+
+.chip-container.medium {
+  padding: 4px 12px;
+  font-size: 14px;
+}
+
+.chip-container.large {
+  padding: 4px 12px;
+  font-size: 16px;
+}
+
+/* Outlined variant */
+.chip-container.outlined {
+  background-color: transparent;
+}
+
+/* Disabled state */
+.chip-container.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Selected state */
+.chip-container.selected {
+  box-shadow: 0 0 0 2px var(--chip-border-color);
+}
+
+/* Hover state */
+.chip-container:hover:not(.disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus state */
+.chip-container:focus {
+  outline: 2px solid var(--chip-border-color);
+  outline-offset: 2px;
+}
+
+/* Active/pressed state */
+.chip-container:active:not(.disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon styling */
+.chip-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--chip-icon-color, #0A0A0A);
+}
+
+/* Label styling */
+.chip-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Close button styling */
+.chip-close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--chip-close-icon-color, #0A0A0A);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.chip-close-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.chip-close-button:focus {
+  outline: 1px solid var(--chip-border-color);
+  outline-offset: 1px;
+}
+
+.chip-close-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Spacing adjustments for different configurations */
+.chip-container.has-icon .chip-label {
+  margin-left: var(--chip-icon-text-spacing, 4px);
+}
+
+.chip-container.dismissible .chip-label {
+  margin-right: var(--chip-icon-text-spacing, 4px);
+}
+
+.chip-container.has-icon.dismissible .chip-label {
+  margin-left: var(--chip-icon-text-spacing, 4px);
+  margin-right: var(--chip-icon-text-spacing, 4px);
+}
+
+/* Small chip specific styles */
+.chip-container.small {
+  gap: 0;
+}
+
+.chip-container.small .chip-label {
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chip-container {
+    max-width: 250px;
+  }
+  
+  .chip-container.small {
+    font-size: 12px;
+    padding: 0px 2px;
+  }
+  
+  .chip-container.medium,
+  .chip-container.large {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  
+  .chip-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .chip-close-button {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .chip-close-button svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .chip-container {
+    border-width: 2px;
+  }
+  
+  .chip-container:focus {
+    outline-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .chip-container,
+  .chip-close-button {
+    transition: none;
+  }
+  
+  .chip-container:hover:not(.disabled) {
+    transform: none;
+  }
+  
+  .chip-container:active:not(.disabled) {
+    transform: none;
+  }
+  
+  .chip-close-button:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .chip-container {
+    background-color: transparent !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+  
+  .chip-close-button {
+    display: none !important;
+  }
+}
